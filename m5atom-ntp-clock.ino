@@ -27,12 +27,16 @@ int lastUpdateHour = 0;
 
 unsigned char display_buffer[347];
 
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, 32400);
-
 const int LINE_PX = 23;
 const int PX_SIZE = 3;
 const int ROW_OFFSET = LINE_PX * PX_SIZE;
+
+//JST:9Hour = 32400sec
+const int UTC_OFFSET  = 32400;
+
+//***********************************************************************
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, UTC_OFFSET);
 
 /**
  * LEDマトリクスへ出力する内容を編集する。
